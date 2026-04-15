@@ -62,3 +62,7 @@ do
   read GUESS
   (( ++NUMBER_OF_GUESSES ))
 done
+
+# print result and save the game to database
+echo "You guessed it in $NUMBER_OF_GUESSES tries. The secret number was $NUMBER. Nice job!"
+INSERT_OUT=$($PSQL "INSERT INTO games(user_id, guesses) VALUES('$USER_ID', $NUMBER_OF_GUESSES)")

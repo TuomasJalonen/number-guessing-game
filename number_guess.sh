@@ -32,6 +32,33 @@ else
   echo "Welcome back, $USERNAME! You have played $GAMES_PLAYED games, and your best game took $BEST_GAME guesses."
 fi
 
-# ask user to input their guess
+# ask user to input their guess and set guess counter to 1
 echo "Guess the secret number between 1 and 1000:"
 read GUESS
+NUMBER_OF_GUESSES=1
+
+# repeat while guess is incorrect
+while [[ $GUESS -ne $NUMBER ]]
+do
+  # check if guess is integer and repeat the read until it is
+  while [[ ! $GUESS =~ [0-9]+ ]]
+  do
+    echo "That is not an integer, guess again:"
+    read GUESS
+  done
+  
+  # check if the secret number is lower than guess and print result
+  if [[ $NUMBER -lt $GUESS ]]
+  then
+    echo "It's lower than that, guess again:"
+
+  # check if the secret number is greater than guess and print result
+  elif [[ $NUMBER -gt $GUESS ]]
+  then
+    echo "It's higher than that, guess again:"
+  fi
+
+  # read another guess and increment guess counter
+  read GUESS
+  (( ++NUMBER_OF_GUESSES ))
+done

@@ -2,7 +2,7 @@
 
 # This is a game where user tries to guess a random number between 1-1000. 
 
-PSQL="psql --username=freecodecamp --dbname=number_guess -t --no-align -c"
+PSQL="psql --dbname=number_guess -t --no-align -c"
 
 # Random integer between 1-1000
 NUMBER=$(( RANDOM % 1000 + 1 ))
